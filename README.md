@@ -22,13 +22,13 @@ Schedule has a substantial impact on fantasy output--thus, it makes sense to loo
 
 Using the 2016 season as training data, I modelled the following statistics at a game level, given the offensive team, defensive team, and stadium:
 
-Rush Attempts
-Rush Yards
-Rushing TDs
-Passing Attempts
-Passing YDs
-Passing TDs
-Interceptions
+Rush Attempts<br/>
+Rush Yards<br/>
+Rushing TDs<br/>
+Passing Attempts<br/>
+Passing YDs<br/>
+Passing TDs<br/>
+Interceptions<br/>
 
 Using these models, I predicted the numerical output of each statistic for every game in the 2017 NFL season (except week 17). I then examined the distribution of these statistics at an individual level relative to the rest of the team to create expected outcomes for this year.  While I would have loved to have used a strictly data driven model to determine the usages, the amount of metadata required (draft, salaries, injuries, etc.) seemed well beyond the scope of V0.  Plus, this method allows for the flexibility mentioned above. Think Alshon Jeffery will get a higher share of targets than what I have allocated? Now we can quantify the extent to which his value should be increased. Feel free to adjust these values, and alert me if you think I've made any egregious errors.
 
