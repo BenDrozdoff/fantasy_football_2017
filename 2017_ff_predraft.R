@@ -22,24 +22,33 @@ rec_yd_pt = .1
 pass_td_pt = 4
 rush_td_pt = 6
 rec_td_pt = 6
-ppr = 0.5
+ppr = 0
+decay_factor = 0.985
 
 budget = 200
 
-# Pull the play by play data for the prior year (will take 5-10 minutes, so I usually
+# Pull the play by play data for the prior years (will take 5-10 minutes, so I usually
 # comment this line out after I load it into my environment)
 
 #pbp_2016 <- season_play_by_play(2016)
+#pbp_2015 <- season_play_by_play(2015)
+#pbp_2016 = rbind(pbp_2016, pbp_2015)
 
-# Correct error that refers to the Jaguars as both JAX AND JAC
+# Correct error that refers to the Jaguars as both JAX AND JAC (and relocation)
 
-pbp_2016 = cbind(pbp_2016 %>% select_if(is.numeric),
-                 pbp_2016 %>% select_if(is.factor),
+pbp_2016 = cbind(pbp_2016 %>% select_if(function(col) !is.character(col)),
   data.frame(lapply(data.frame(pbp_2016 %>% select_if(is.character), 
                                stringsAsFactors = FALSE), 
          function(x){
-  gsub("JAX", "JAC", x)
+  gsub("STL", "LA", gsub("JAX", "JAC", x))
 }), stringsAsFactors = FALSE))
+
+# Create the decay factor (more recent data gets heavier weighting)
+
+pbp_2016 = data.frame(pbp_2016 %>%
+                        mutate(weight = decay_factor ^ (as.numeric(
+                          max(pbp_2016$Date) - Date) %/% 7)
+                        ))
 
 # Split data into pass and rush
 
@@ -47,7 +56,8 @@ pass_data_16 = data.frame(pbp_2016 %>%
                          filter(PassAttempt == 1 & PlayType != 'No Play' &
                                   !is.na(Passer)) %>%
                          group_by(Offense = posteam, GameID, DefensiveTeam,
-                                  home = ifelse(posteam == HomeTeam, 1, 0)) %>%
+                                  home = ifelse(posteam == HomeTeam, 1, 0),
+                                  weight) %>%
                          summarise(att = n(),
                                    yds = sum(Yards.Gained),
                                    td = sum(Touchdown),
@@ -57,7 +67,8 @@ rush_data_16 = data.frame(pbp_2016 %>%
                             filter(RushAttempt == 1 & PlayType != 'No Play' &
                                      !is.na(Rusher)) %>%
                             group_by(Offense = posteam, GameID, DefensiveTeam,
-                                     home = ifelse(posteam == HomeTeam, 1, 0)) %>%
+                                     home = ifelse(posteam == HomeTeam, 1, 0),
+                                     weight) %>%
                             summarise(att = n(),
                                       yds = sum(Yards.Gained),
                                       td = sum(Touchdown)))
@@ -69,7 +80,8 @@ rush_data_16 = data.frame(pbp_2016 %>%
 # both the defense and the offense on each statistic (attempts, yards, TDs, etc)
 
 pass_att_model_16 = lmer(att ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                 data = pass_data_16, control=lmerControl("nloptwrap"))
+                 data = pass_data_16, weights = weight,
+                 control=lmerControl("nloptwrap"))
 
 most_att_offense_16 = data.frame(ranef(pass_att_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(pass_att_model_16)$Offense))) %>%
@@ -80,7 +92,8 @@ most_att_defense_16 = data.frame(ranef(pass_att_model_16)$DefensiveTeam) %>%
   arrange(desc(X.Intercept.))
 
 rec_yd_model_16 = lmer(yds ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                    data = pass_data_16, control=lmerControl("nloptwrap"))
+                    data = pass_data_16, weights = weight,
+                    control=lmerControl("nloptwrap"))
 
 most_rec_yd_offense_16 = data.frame(ranef(rec_yd_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(rec_yd_model_16)$Offense))) %>%
@@ -91,7 +104,8 @@ most_rec_yd_defense_16 = data.frame(ranef(rec_yd_model_16)$DefensiveTeam) %>%
   arrange(desc(X.Intercept.))
 
 rec_td_model_16 = lmer(td ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                       data = pass_data_16, control=lmerControl("nloptwrap"))
+                       data = pass_data_16, weights = weight,
+                       control=lmerControl("nloptwrap"))
 
 most_rec_td_offense_16 = data.frame(ranef(rec_td_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(rec_td_model_16)$Offense))) %>%
@@ -102,7 +116,8 @@ most_rec_td_defense_16 = data.frame(ranef(rec_td_model_16)$DefensiveTeam) %>%
   arrange(desc(X.Intercept.))
 
 int_model_16 = lmer(int ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                       data = pass_data_16, control=lmerControl("nloptwrap"))
+                       data = pass_data_16, weights = weight,
+                       control=lmerControl("nloptwrap"))
 
 most_int_offense_16 = data.frame(ranef(int_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(int_model_16)$Offense))) %>%
@@ -114,7 +129,8 @@ most_int_defense_16 = data.frame(ranef(int_model_16)$DefensiveTeam) %>%
 
 
 rush_yd_model_16 = lmer(yds ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                       data = rush_data_16, control=lmerControl("nloptwrap"))
+                       data = rush_data_16, weights = weight,
+                       control=lmerControl("nloptwrap"))
 
 most_rush_yd_offense_16 = data.frame(ranef(rush_yd_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(rush_yd_model_16)$Offense))) %>%
@@ -125,7 +141,8 @@ most_rush_yd_defense_16 = data.frame(ranef(rush_yd_model_16)$DefensiveTeam) %>%
   arrange(desc(X.Intercept.))
 
 rush_td_model_16 = lmer(td ~ home + (1 | Offense) + (1 | DefensiveTeam),
-                       data = rush_data_16, control=lmerControl("nloptwrap"))
+                       data = rush_data_16, weights = weight,
+                       control=lmerControl("nloptwrap"))
 
 most_rush_td_offense_16 = data.frame(ranef(rush_td_model_16)$Offense) %>% 
   mutate(team = rownames(data.frame(ranef(rush_td_model_16)$Offense))) %>%
@@ -152,7 +169,8 @@ rush_player_16 = rush_data_16 = data.frame(pbp_2016 %>%
                             Yards.Gained,
                             DefensiveTeam,
                             yrdline100,
-                            Touchdown
+                            Touchdown,
+                            weight
                           ))
 
 goal_line_rush_df = data.frame(rush_player_16 %>%
@@ -169,7 +187,8 @@ rec_player_16 = rush_data_16 = data.frame(pbp_2016 %>%
                             Yards.Gained,
                             DefensiveTeam,
                             yrdline100,
-                            Touchdown
+                            Touchdown,
+                            weight
                           ))
 
 goal_line_rec_df = data.frame(rec_player_16 %>%
@@ -177,6 +196,7 @@ goal_line_rec_df = data.frame(rec_player_16 %>%
 
 ypc_model_16 = lmer(Yards.Gained ~ home + yrdline100 + (1 | Offense) + 
                       (1 | Rusher) + (1 | DefensiveTeam), data = rush_player_16,
+                    weights = weight,
                     control = lmerControl("nloptwrap"))
 
 best_ypc_rb_16 = data.frame(ranef(ypc_model_16)$Rusher) %>% 
