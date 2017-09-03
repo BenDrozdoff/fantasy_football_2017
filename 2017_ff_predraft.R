@@ -22,6 +22,7 @@ rec_yd_pt = .1
 pass_td_pt = 4
 rush_td_pt = 6
 rec_td_pt = 6
+int_pt = -2
 ppr = 0
 decay_factor = 0.985
 
@@ -30,9 +31,9 @@ budget = 200
 # Pull the play by play data for the prior years (will take 5-10 minutes, so I usually
 # comment this line out after I load it into my environment)
 
-#pbp_2016 <- season_play_by_play(2016)
-#pbp_2015 <- season_play_by_play(2015)
-#pbp_2016 = rbind(pbp_2016, pbp_2015)
+# pbp_2016 <- season_play_by_play(2016)
+# pbp_2015 <- season_play_by_play(2015)
+# pbp_2016 = rbind(pbp_2016, pbp_2015)
 
 # Correct error that refers to the Jaguars as both JAX AND JAC (and relocation)
 
@@ -336,6 +337,7 @@ usage = read.csv("usage_priors.csv")
 projections_season = merge(projections_season, usage, by.x = "Offense", by.y = "Team")
 projections_season = data.frame(projections_season %>% 
                                   mutate(qb_fp = pass_yd_pt*rec_yd + pass_td_pt*rec_td + 
+                                           ints * int_pt + 
                                            qb_att_rate*rush_yd*rush_yd_pt + 
                                            qb_gl_rate*rush_td*rush_td_pt,
                                         rb1_fp = rush_yd_pt*rush_yd*rb1_att_rate + 
@@ -523,6 +525,10 @@ for(i in as.numeric(rownames(rb_rankings))) {
      ((rostered_wrs %% teams) * ((rostered_wrs %/% teams) + 1))/rostered_wrs))
 }
 
+if(flex_spots == 0){
+  rb_rankings$flex_pct = 0
+}
+
 rb_rankings = data.frame(rb_rankings %>%
                            mutate(flex_pct = ifelse(is.na(flex_pct), 0, flex_pct)) %>%
                            mutate(start_pct = start_pct + flex_pct) %>%
@@ -563,6 +569,10 @@ for(i in as.numeric(rownames(wr_rankings))) {
      ((rostered_wrs %% teams) * ((rostered_wrs %/% teams) + 1))/rostered_wrs) *
     (phyper(starting_rb, rbs_above, rbs_below, (rostered_rbs %/% teams) + 1) * 
      ((rostered_rbs %% teams) * ((rostered_rbs %/% teams) + 1))/rostered_rbs))
+}
+
+if(flex_spots == 0){
+  wr_rankings$flex_pct = 0
 }
 
 wr_rankings = data.frame(wr_rankings %>%
