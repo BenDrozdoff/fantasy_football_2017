@@ -20,7 +20,7 @@ Schedule has a substantial impact on fantasy output--thus, it makes sense to loo
 
 <h4>Model Specifics</h4>
 
-Using the 2016 season as training data, I modelled the following statistics at a game level, given the offensive team, defensive team, and stadium:
+Using the 2016 and 2015 seasons as training data (weighting for recency), I modelled the following statistics at a game level, given the offensive team, defensive team, and stadium:
 
 Rush Attempts<br/>
 Rush Yards<br/>
