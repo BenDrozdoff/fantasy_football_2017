@@ -27,6 +27,7 @@ ppr = 0
 decay_factor = 0.985
 
 budget = 200
+remove_players = TRUE
 
 # Pull the play by play data for the prior years (will take 5-10 minutes, so I usually
 # comment this line out after I load it into my environment)
@@ -622,10 +623,19 @@ roster_size = starting_qb + starting_rb + starting_wr + starting_te + flex_spots
 
 auction_pool = (budget - 2)*teams
 
+removal_list = read.csv("remove_from_pool.csv", strip.white = TRUE)
+
+if(remove_players == TRUE){
+  compiled_rankings = data.frame(
+    compiled_rankings %>%
+      filter(!player %in% removal_list$player))
+  auction_pool = auction_pool - sum(removal_list$drafted_value)
+}
+
 total_value = sum(compiled_rankings$value)
 
 compiled_rankings = data.frame(compiled_rankings %>%
-  mutate(auction_values = (value * auction_pool / total_value)) %>%
+  mutate(auction_values = round((value * auction_pool / total_value), 1)) %>%
     arrange(desc(auction_values), position, desc(points)))
 
 
