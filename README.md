@@ -15,6 +15,8 @@ The primary features that my projection offers that, as far as I can tell, most 
 1) Projecting week-by-week rather than the entire season
 2) Adjusting for defenses
 3) Flexibility based on beliefs about playing time
+4) 2 years of data weighted exponentially by recency
+5) Option to adjust for inflation due to keepers
 
 Schedule has a substantial impact on fantasy output--thus, it makes sense to look at training data in this context, and predict for future games in this context.  However, any regression based model will be unsuccessful in doing this. Enter mixed effects models--I will defer to <a href="http://www.baseballprospectus.com/article.php?articleid=25514">Jonathan Judge</a> for an explanation of how they work, as this article (and all of his work at Baseball Prospectus) inspired my interest this statistical technique.  
 
