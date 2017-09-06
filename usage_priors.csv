@@ -4,7 +4,7 @@ ATL,Matt Ryan,0.01,0.01,Devonta Freeman,0.55,0.55,0.08,0.08,Tevin Coleman,0.3,0.
 BAL,Joe Flacco,0.01,0.01,Danny Woodhead,0.25,0.15,0.11,0.09,Terrance West,0.5,0.55,0.03,0.03,Jeremy Maclin,0.2,0.17,Mike Wallace,0.2,0.23,Dennis Pitta,0.16,0.16
 BUF,Tyrod Taylor,0.22,0.22,LeSean McCoy,0.52,0.52,0.11,0.11,,,,,,Jordan Matthews,0.19,0.17,Zay Jones,0.17,0.19,Charles Clay,0.18,0.21
 CAR,Cam Newton,0.18,0.25,Christian McCaffrey,0.35,0.3,0.11,0.09,Jonathan Stweart,0.35,0.35,0.03,0.01,Kelvin Benjamin,0.24,0.24,Ted Ginn,0.17,0.15,Greg Olson,0.24,0.24
-CHI,Mike Glennon,0.01,0.01,Jordan Howard,0.7,0.65,0.08,0.08,,,,,,Kevin White,0.21,0.23,Markus Wheaton,0.15,0.13,Zach Miller,0.12,0.12
+CHI,Mike Glennon,0.01,0.01,Jordan Howard,0.7,0.65,0.08,0.08,,,,,,Kendall Wright,0.21,0.23,Markus Wheaton,0.15,0.13,Zach Miller,0.12,0.12
 CIN,Andy Dalton,0.01,0.01,Joe Mixon,0.35,0.35,0.04,0.04,Jeremy Hill,0.45,0.45,0.02,0.01,AJ Green,0.29,0.25,John Ross,0.13,0.15,Tyler Eifert,0.18,0.22
 CLE,Deshone Kizer,0.05,0.05,Isaiah Crowell,0.55,0.59,0.065,0.04,Duke Johnson,0.12,0.08,0.05,0.05,Kenny Britt,0.25,0.25,Corey Coleman,0.22,0.22,David Njoku,0.11,0.11
 DAL,Dak Prescott,0.09,0.2,Ezekiel Elliot,0.43,0.43,0.045,0.02,Darren McFadden,0.3,0.25,0.03,0.03,Dez Bryant,0.25,0.25,Cole Beasley,0.19,0.15,Jason Witten,0.16,0.2
@@ -12,18 +12,18 @@ DEN,Trevor Siemian,0.01,0.01,CJ Anderson,0.45,0.5,0.03,0.01,Jamaal Charles,0.3,0
 DET,Matthew Stafford,0.01,0.01,Ameer Abdullah,0.45,0.42,0.07,0.07,Theo Riddick,0.25,0.2,0.08,0.1,Golden Tate,0.25,0.21,Marvin Jones,0.21,0.17,Eric Ebron,0.16,0.18
 GB,Aaron Rodgers,0.2,0.2,Ty Montgomery,0.35,0.35,0.08,0.08,Jamaal Williams,0.25,0.25,0.03,0.03,Jordy Nelson,0.27,0.27,Davante Adams,0.2,0.18,Martellus Bennett,0.09,0.12
 HOU,Deshaun Watson,0.03,0.03,Lamar Miller,0.55,0.5,0.05,0.06,Alfred Blue,0.21,0.26,0.03,0.01,Deandre Hopkins,0.29,0.29,Braxton Miller,0.15,0.13,CJ Fiedorowicz,0.17,0.18
-IND,Andrew Luck,0.17,0.13,Frank Gore,0.6,0.5,0.05,0.05,Robert Turbin,0.1,0.25,0.05,0.05,TY Hilton,0.3,0.26,Donte Moncrief,0.14,0.17,Jack Doyle,0.14,0.16
+IND,Andrew Luck,0.17,0.13,Frank Gore,0.6,0.5,0.05,0.05,Matt Jones,0.1,0.25,0.05,0.05,TY Hilton,0.3,0.26,Donte Moncrief,0.14,0.17,Jack Doyle,0.14,0.16
 JAC,Blake Bortles,0.1,0.15,Leonard Fournette,0.55,0.6,0.05,0.02,TJ Yeldon,0.25,0.15,0.09,0.09,Allen Robinson,0.23,0.27,Marqise Lee,0.2,0.15,Julius Thomas,0.08,0.1
 KC,Alex Smith,0.01,0.05,Kareem Hunt,0.55,0.55,0.08,0.06,Charcandrick West,0.25,0.2,0.08,0.08,Tyreek Hill,0.23,0.23,Chris Conley,0.16,0.16,Travis Kelce,0.22,0.22
 LA,Jared Goff,0.01,0.01,Todd Gurley,0.7,0.7,0.08,0.1,,,,,,Sammy Watkins,0.26,0.25,Robert Woods,0.22,0.21,Lance Kendricks,0.13,0.13
 MIA,Jay Cutler,0.01,0.01,Jay Ajayi,0.75,0.7,0.05,0.07,Damien Williams,0.1,0.15,0.07,0.09,Jarvis Landry,0.28,0.25,Devante Parker,0.23,0.21,Dion Sims,0.07,0.11
 MIN,Sam Bradford,0.01,0.01,Dalvin Cook,0.45,0.45,0.05,0.04,Latavius Murray,0.25,0.25,0.06,0.07,Stefon Diggs,0.22,0.18,Adam Thielen,0.22,0.18,Kyle Rudollph,0.2,0.26
 NE,Tom Brady,0.01,0.05,Mike Gillislee,0.4,0.4,0.03,0.01,James White,0.1,0.1,0.1,0.11,Brandin Cooks,0.23,0.2,Chris Hogan,0.15,0.13,Rob Gornkowski,0.21,0.25
-NO,Drew Brees,0.01,0.01,Mark Ingram,0.4,0.35,0.07,0.1,Adrian Peterson,0.35,0.4,0.03,0.03,Michael Thomas,0.25,0.21,Willie Snead,0.17,0.13,Coby Fleener,0.13,0.19
+NO,Drew Brees,0.01,0.01,Mark Ingram,0.4,0.35,0.07,0.1,Adrian Peterson,0.35,0.4,0.03,0.02,Michael Thomas,0.25,0.21,Ted Ginn,0.17,0.15,Coby Fleener,0.13,0.19
 NYG,Eli Manning,0.01,0.01,Paul Perkins,0.5,0.5,0.05,0.02,Shane Vereen,0.2,0.2,0.07,0.08,Odell Beckham,0.31,0.31,Sterling Shepard,0.17,0.17,Evan Engram,0.09,0.09
 NYJ,Josh McCown,0.01,0.01,Bilal Powell,0.5,0.55,0.11,0.12,Matt Forte,0.3,0.25,0.08,0.09,Robby Anderson,0.22,0.21,Jermaine Kearse,0.18,0.16,Austin Sefarian Jenkins,0.09,0.11
 OAK,Derek Carr,0.03,0.03,Marshawn Lynch,0.5,0.6,0.04,0.04,Jalen Richard,0.25,0.15,0.05,0.05,Amari Cooper,0.27,0.24,Michael Crabtree,0.24,0.21,Clive Walford,0.09,0.09
-PHI,Carson Wentz,0.08,0.05,LeGarrette Blount,0.55,0.6,0.03,0.01,Darren Sproles,0.24,0.16,0.11,0.12,Alshon Jeffery,0.23,0.23,Nelson Agholor,0.14,0.1,Zach Ertz,0.2,0.22
+PHI,Carson Wentz,0.08,0.05,LeGarrette Blount,0.45,0.5,0.03,0.01,Darren Sproles,0.24,0.16,0.11,0.12,Alshon Jeffery,0.23,0.23,Nelson Agholor,0.14,0.1,Zach Ertz,0.2,0.22
 PIT,Big Ben,0.03,0.05,LeVeon Bell,0.75,0.75,0.14,0.12,,,,,,Antonio Brown,0.28,0.23,Martavis Bryant,0.17,0.21,Jesse James,0.08,0.12
 SD,Philip Rivers,0.01,0.01,Melvin Gordon,0.7,0.75,0.08,0.08,,,,,,Keenan Allen,0.22,0.18,Tyrell Williams,0.2,0.17,Hunter Hentry,0.11,0.14
 SEA,Russell Wilson,0.15,0.05,Eddie Lacy,0.35,0.4,0.03,0.01,CJ Prosise,0.2,0.2,0.08,0.08,Doug Baldwin,0.25,0.21,Tyler Lockett,0.15,0.12,Jimmy Graham,0.2,0.23

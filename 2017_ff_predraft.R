@@ -9,25 +9,25 @@ library(lme4)
 # Those seeking to use this tool for deeper leagues will likely benefit by adding to 
 # the usage spreadsheet referenced below
 
-teams = 10
+teams = 12
 starting_qb = 1
 starting_rb = 2
 starting_wr = 2
 starting_te = 1
 flex_spots = 1
 bench_spots = 7
-pass_yd_pt = .025
+pass_yd_pt = .02
 rush_yd_pt = .1
 rec_yd_pt = .1
 pass_td_pt = 4
 rush_td_pt = 6
 rec_td_pt = 6
-int_pt = -2
-ppr = 0
+int_pt = -1
+ppr = 0.5
 decay_factor = 0.985
 
 budget = 200
-remove_players = TRUE
+remove_players = FALSE
 
 # Pull the play by play data for the prior years (will take 5-10 minutes, so I usually
 # comment this line out after I load it into my environment)
